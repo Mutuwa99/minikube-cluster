@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: django-logs-pv
+spec:
+  capacity:
+    storage: 1Gi  # 1GB storage for logs
+  accessModes:
+    - ReadWriteOnce  # Used by one pod at a time
+  persistentVolumeReclaimPolicy: Retain  # Keeps data even if PVC is deleted
+  hostPath:
+    path: "/mnt/data/django-logs"  # Local Minikube path for logs

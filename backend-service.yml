@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-app-service
+  labels:
+    app: backend-app
+spec:
+  selector:
+    app: backend-app  # This matches the 'app' label in the Deployment
+  ports:
+    - protocol: TCP
+      port: 8000  # The port the service will expose
+      targetPort: 8000  # The port on the container (same as the Django default)
+  type: ClusterIP  # Default type, keeps it internal. Change if you need external access.

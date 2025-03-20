@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: django-logs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce  # One pod can write at a time
+  resources:
+    requests:
+      storage: 500Mi  # Request 500MB from the PV

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+  labels:
+    app: backend-app
+spec:
+  replicas: 2  # Runs 2 replicas for high availability
+  strategy:
+    type: RollingUpdate  # Enables smooth updates
+    rollingUpdate:
+      maxUnavailable: 1  # Only 1 pod can be down during update
+      maxSurge: 1  # 1 extra pod can be created during update
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: backend-app
+          image: mutuwa12/backendapp:v4  # Replace with your backend image
+          ports:
+            - containerPort: 8000  # Django runs on port 8000 by default
+          resources:
+            limits:
+              cpu: "500m"  # Limits CPU to 0.5 cores
+              memory: "512Mi"  # Limits memory usage to 512MiB
+            requests:
+              cpu: "250m"  # Requests 0.25 cores initially
+              memory: "256Mi"  # Requests 256MiB initially
+          volumeMounts:
+            - name: django-logs
+              mountPath: /usr/src/app/logs  # Mount the PVC here
+      volumes:
+        - name: django-logs
+          persistentVolumeClaim:
+            claimName: django-logs-pvc  # Reference the PVC
+      imagePullSecrets:
+        - name: regcred  # Pulls from private registry if needed
