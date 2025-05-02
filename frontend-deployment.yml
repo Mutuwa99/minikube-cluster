@@ -5,7 +5,7 @@ metadata:
   labels:
     app: react-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: react-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: react-app
-          image: mutuwa12/frontendapp:v8  
+          image: mutuwa12/frontendapp:v9  
           ports:
             - containerPort: 3000
       imagePullSecrets:

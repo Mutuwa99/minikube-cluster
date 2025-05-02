@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: backend-app
-          image: mutuwa12/backendapp:v4  # Replace with your backend image
+          image: mutuwa12/backendapp:v5  # Replace with your backend image
           ports:
             - containerPort: 8000  # Django runs on port 8000 by default
           resources:
