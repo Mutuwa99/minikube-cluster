@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/Mutuwa99/minikube-cluster.git'
     targetRevision: main
-    path: ../myapp
+    path: myapp
     helm:
       valueFiles:
         - prod-values.yaml
