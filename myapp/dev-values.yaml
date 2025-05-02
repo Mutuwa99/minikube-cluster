@@ -11,6 +11,7 @@ image:
 
 service:
   type: ClusterIP
+  targetPort: 80
   port: 80
 
 env: dev
